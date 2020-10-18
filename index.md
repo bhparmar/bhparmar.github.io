@@ -1,8 +1,7 @@
 <html>
 <meta name="Keyword" content="Bhavesh Parmar">
 
-<head>
-<title>Bhavesh Parmar @ L. D. College of Engineering</title>
+<head><title>Bhavesh Parmar @ L. D. College of Engineering</title>
 <link rel="stylesheet" type="text/css" href="./mycss_github.css" >
 </head>
 
