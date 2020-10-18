@@ -10,7 +10,7 @@
 <div style="position: fixed; top: 0">
 	<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
 		<tr> 
-	<td style="width:10%" ></td><td width="72%"> Bhavesh Parmar</td>
+	<td style="width:10%" ></td><td width="72%">Bhavesh Parmar</td>
 	<td style="font-size:16px"><a href="./index.md">Home</a></td>
 	<td style="width:3%"></td>
 	<td style="font-size:16px"><a href="./papers1.html">Papers</a></td>
@@ -36,13 +36,13 @@
 <div style="-webkit-flex: 1;
             flex: 1;
             width: 600px;">
-<p class="larger">Jessie Hui Wang<br></p>
-	<p>Associate Professor</p>
-	<p>Institute for Network Sciences and Cyberspace<br>
-	Tsinghua University<br>
-	Beijing, China<br>Phone: 86-10-62603212<br>
+<p class="larger">Bhavesh Parmar<br></p>
+	<p>Assistant Professor</p>
+	<p>Biomedical Engineering Department<br>
+	L. D. College of Engineering<br>
+	Ahmedabad, India<br>Phone: 91-84-01017474<br>
 	Email: jessiewang at tsinghua.edu.cn<br>
-	<a href="https://www.researchgate.net/profile/Jessie_Wang2">ResearchGate</a></p>
+	<a href="https://www.researchgate.net/profile/bhparmar">ResearchGate</a></p>
 </div>
 <div style="width: 180px;
             -webkit-flex: 1;
