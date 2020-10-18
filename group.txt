@@ -1,0 +1,55 @@
+######   2019年期刊   ######
+
+8. Jessie Hui Wang, Jilong Wang, Changqing An and Qianli Zhang, "A Survey on Resource Scheduling for Data Transfers in Inter-Datacenter WANs," Computer Networks, vol. 161, pp. 115-137, October 2019. doi: 10.1016/j.comnet.2019.06.011.  (online 20 June 2019.)  
+
+7. Tao Yu, Hongyan Cui, Yilong Nian, Yuchen Hong, Jilong Wang, and Honggang Zhang, "Behavior Predictability and Consistency of Mobile User’s Traffic Usage between Different Years Based on Entropy Theory," International Journal of Communication Systems, SEP 2019. 
+
+6. Yuedong Xu, Zhujun Xiao, Tianyu Ni, Jessie Hui Wang, Xin Wang and Eitan Altman, "On The Robustness of Price-Anticipating Kelly Mechanism," IEEE/ACM Transactions on Networking, vol. 27, no. 4, pp. 1558-1571, Aug. 2019. doi: 10.1109/TNET.2019.2926304.   (online 18 July 2019) 
+
+5. Shengchao Liu, Jianping Weng, Jessie Hui Wang, Changqing An, Yipeng Zhou, and Jilong Wang, "An Adaptive Online Scheme for Scheduling and Resource Enforcement in Storm," IEEE/ACM Transactions on Networking, vol. 27, no. 4, pp. 1373-1386, August 2019. doi: 10.1109/TNET.2019.2918341. jessiewang@tsinghua.edu.cn (SCI 2018: 3.597)
+致谢：National Key Research and Development Program of China under Grant 2016YFB0801302 and the National Natural Science Foundation of China under Grant 61202356.
+单位：[ 1 ] Tsinghua Univ, Inst Network Sci & Cyberspace, Beijing 100084, Peoples R China
+     [ 2 ] Beijing Natl Res Ctr Informat Sci & Technol, Beijing 100084, Peoples R China
+
+4. Tao Yu, Yuchen Zhang, Diyue Chen, Hongyan Cui, and Jilong Wang, "Routing Loop Audit Mechanism Based on SDN," China Communications, JUL 2019, vol:16,issue:7,pp:96-108.
+
+3. Tao Yu, Linqing Gui, Tianxin Yu, and Jilong Wang, "Walrasian Equilibrium-based Incentive Scheme for Mobile Crowdsourcing Fingerprint Localization," Sensors, JUN 2019.
+
+2. Jingchun Cheng, Yali Li, Jilong Wang, Le Yu, and Shengji Wang, "Exploiting Effective Facial Patches for Robust Gender Recognition," in Tsinghua Science and Technology, vol. 24, no. 3, pp. 333-345, June 2019.
+
+1. 张千里，姜彩萍，王继龙，李星，IPv6 地址结构标准化研究综述，计算机学报，第42卷第6期，2019年6月，1384-1405.
+致谢：2017YFB0503703
+单位：清华大学网络科学与网络空间研究院
+
+
+######   2019年会议   ######
+
+4. Yujia Liu, and Changqing An, "Cost Efficient Internet Path Tracking Based on Routing Changes Prediction," in Proc. IEEE IPCCC, Oct. 2019.
+致谢项目号 No.2016YFB0801302
+单位信息为：
+Institute for Network Sciences and Cyberspace, Tsinghua University
+Beijing National Research Center for Information Science and Technology
+
+3. Congcong Miao, Jilong Wang, Tianying Ji, Hui Wang, Chao Xu, Fenghua Li, and Fengyuan Ren, "BDAC: A Behavior-aware Dynamic Adaptive Configuration on DHCP in Wireless LANs," The 27th IEEE International Conference on Network Protocols (ICNP 2019), Chicago, Illinois, USA, October 7-10, 2019.
+单位：
+Department of Computer Science and Technology, Tsinghua University
+Institute for Network Sciences and Cyberspace, Tsinghua University
+Beijing National Research Center for Information Science and Technology (BNRist)
+致谢：National Key R&D Program of China (2016YFB0801301) and (2016QY12Z2103).
+
+2. JingAn Xue, Weizhen Dang, Haibo Wang, Jilong Wang, and Jessie Hui Wang, "Evaluating Performance and Inefficient Routing of an Anycast CDN," IEEE/ACM International Symposium on Quality of Service (IWQoS 2019), Phoenix, Arizona, USA, June 24-25, 2019.
+单位：一作HuaWei，其他人Beijing National Research Center for Information Science and Technology (BNRist)
+致谢：National Key Research and Development Program of China under Grant No. 2016YFB0801301
+
+1. Shengchao Liu, Jilong Wang, Jessie Hui Wang, Haibo Wang, and Ya Liu, "WRT: Constructing Users' Web Request Trees from HTTP Header Logs," 53rd IEEE International Conference on Communications (ICC 2019), Shanghai, China, May 20-24, 2019.
+致谢：National Key Research and Development Program of China under Grant No. 2016YFB0801301, 2016YFB0801302 and 2017YFB0503703.
+
+
+######   其他   ######
+比赛名称	比赛时间	参与人数	所得奖项	所在队伍	比赛描述
+陈昕，第三届腾讯广告算法大赛	2019/06	超过3000人	Rank:70	纯净水酸菜鱼	对商家投放的广告进行曝光率预测
+陈昕，DataCon:大数据安全竞赛（参与人数大约400人），攻击源于攻击者分析方向	2019/05	未知	第一名	BlueThanos	从攻击日志中，对攻击者进行识别与用户画像，对其攻击行为与能力做出描述
+陈昕，UNSW and Tsinghua University Datathon 2019	2019/09	未知	初赛二等奖第三名，复赛第四名	给我多一点luck	初赛，对保险理赔金额进行预测，以及对骗保行为进行识别。复赛，对电商图像数据进行分类
+沈钲晨，DataCon:大数据安全竞赛，攻击源于攻击者分析方向	2019/05	未知	第一名	BlueThanos	从攻击日志中，对攻击者进行识别与用户画像，对其攻击行为与能力做出描述
+沈钲晨，UNSW and Tsinghua University Datathon 2019	2019/09	未知	初复赛第2名	Hide	初赛，对保险理赔金额进行预测，以及对骗保行为进行识别。复赛，对电商图像数据进行分类
+（UNSW and Tsinghua University Datathon 2019：初赛中方参与人数318人）
