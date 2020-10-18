@@ -51,19 +51,17 @@
 </div>
 </div>
 
-<p><span class="larger">Research areas</span>: cloud computing, big data processing, WAN optimization, Internet measurement, Internet routing, and Internet economics.</p>
+<p><span class="larger">Research areas</span>: Medical Imaging, Deep Learning, Computer Cision, Biomechanics.</p>
 
 <p class="larger">Education</p>
 <ul>
-<li><b>Ph.D. in Information Engineering, the Chinese University of Hong Kong.</b></li>
+<li><b>Ph.D. (Pursuing) in Biomedical , Gujarat Technological University.</b></li>
 	<ul>
-	<li>Advisor: Professor <a href="http://www.ie.cuhk.edu.hk/people/dahming.html">
-		Dah Ming Chiu</a> and <a href="http://www.cse.cuhk.edu.hk/~cslui/">John C.S. Lui</a></li>
-<!--	<li>Thesis: ISPs' Traffic Engineering and Peering Strategy. [<a href="files/dissertationfinal09052007.pdf">Dissertation</a>]</li>
--->
+	<li>Advisor: Professor <a href="http://xxx.html">Mehul Parikh</a></li>
+<!--	<li>Thesis: thesis title [<a href="files/xxx.pdf">Dissertation</a>]</li> -->
 	</ul>
 
-<li><b>B.S. and M.S. in Computer Science, Tsinghua University.</b></li>
+<li><b>MTech in Biomedical Engineering, Indian Institute of Technology Madras, Chennai, India.</b></li>
 </ul>
 
 <p>&nbsp; </p>
