@@ -7,26 +7,10 @@
 </head>
 
 <body class="Palatino">
-<div style="position: fixed; top: 0">
-	<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
-		<tr> 
-	<td style="width:10%" ></td><td width="72%">Bhavesh Parmar</td>
-	<td style="font-size:16px"><a href="./index.md">Home</a></td>
-	<td style="width:3%"></td>
-	<td style="font-size:16px"><a href="./papers1.html">Papers</a></td>
-	<td style="width:3%"></td>
-	<td style="font-size:16px"><a href="./team1.html">Team</a></td>
-	<td style="width:3%"></td>
-	<td style="font-size:16px"><a href="./teaching1.html">Teaching</a></td>
-	<td style="width:6%"></td>
-		</tr>
-	</table>
-</div>
 
 <div style="height: 36px"></div>
 
 <!-- The page starts from here -->
-
 
 <div style="width: 800px;
             height: 260px;
@@ -48,6 +32,21 @@
             -webkit-flex: 1;
             flex: 1;"> 
 <img src="me.jpg" height="200px">
+</div>
+<div style="position: fixed; top: 0">
+	<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
+		<tr> 
+	<td style="width:10%" ></td><td width="72%">Bhavesh Parmar</td>
+	<td style="font-size:16px"><a href="./index.md">Home</a></td>
+	<td style="width:3%"></td>
+	<td style="font-size:16px"><a href="./papers1.html">Papers</a></td>
+	<td style="width:3%"></td>
+	<td style="font-size:16px"><a href="./team1.html">Team</a></td>
+	<td style="width:3%"></td>
+	<td style="font-size:16px"><a href="./teaching1.html">Teaching</a></td>
+	<td style="width:6%"></td>
+		</tr>
+	</table>
 </div>
 </div>
 
