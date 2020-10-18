@@ -41,7 +41,7 @@
 	<p>Biomedical Engineering Department<br>
 	L. D. College of Engineering<br>
 	Ahmedabad, India<br>Phone: 91-84-01017474<br>
-	Email: jessiewang at tsinghua.edu.cn<br>
+	Email: bhparmar at ldce.ac.in<br>
 	<a href="https://www.researchgate.net/profile/bhparmar">ResearchGate</a></p>
 </div>
 <div style="width: 180px;
@@ -65,23 +65,6 @@
 </ul>
 
 <p>&nbsp; </p>
-
-<p class="larger"><font color="red">For potential Postdocs and PhD students:</font></p>
-
-<p><font color="red">(Sorry I do not have open positions for oversea students now. ) </font></p>
-
-<p><font color="red">(Sorry I do not accept applications for the master's degree program. ) </font></p>
-
-<p>I am always looking for postdocs in the area of networking, cloud/edge computing, learning etc. If you are interested, please email me and provide me with your CV.</p>
-
-<p>I am also looking for self-motivated and diligent PhD students with intellectual curiosity and passion in doing "research". I expect my students have a strong background in </p>
-<ul>
-<li>mathematics (e.g. optimization, queueing theory, game theory), <b>and/or</b></li>
-<li>system (e.g. Storm, Spark, Linux) and programming skill (python is preferred). </li>
-</ul>
-
-
-</div>
 
 </body>
 </html>
