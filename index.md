@@ -51,17 +51,17 @@
 </div>
 </div>
 
-<p><span class="larger">Research areas</span>: Medical Imaging, Deep Learning, Computer Cision, Biomechanics.</p>
+<p><span class="larger">Research areas</span>: Medical Imaging, Deep Learning, Computer Vision, Biomechanics.</p>
 
 <p class="larger">Education</p>
 <ul>
-<li><b>Ph.D. (Pursuing) in Biomedical , Gujarat Technological University.</b></li>
+<li><b>Ph.D. (Pursuing): in Biomedical Engineering, Gujarat Technological University.</b></li>
 	<ul>
-	<li>Advisor: Professor <a href="http://xxx.html">Mehul Parikh</a></li>
+	<li>Advisor: Prof. <a href="http://xxx.html">Mehul Parikh</a></li>
 <!--	<li>Thesis: thesis title [<a href="files/xxx.pdf">Dissertation</a>]</li> -->
 	</ul>
 
-<li><b>MTech in Biomedical Engineering, Indian Institute of Technology Madras, Chennai, India.</b></li>
+<li><b>MTech: Biomedical Engineering, Indian Institute of Technology Madras, Chennai, India.</b></li>
 </ul>
 
 <p>&nbsp; </p>
