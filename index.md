@@ -33,8 +33,8 @@
 <img src="me.jpg" height="200px">
 </div>
 <div style="position: fixed; top: 0">
-	<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
-		<tr> 
+	<!--<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
+		<tr> -->
 	<td style="width:10%" ></td><td width="72%">Bhavesh Parmar</td>
 	<td style="font-size:16px"><a href="./index.md">Home</a></td>
 	<td style="width:3%"></td>
@@ -45,7 +45,7 @@
 	<td style="font-size:16px"><a href="./teaching1.html">Teaching</a></td>
 	<td style="width:6%"></td>
 		</tr>
-	</table>
+	<!--</table> -->
 </div>
 </div>
 
