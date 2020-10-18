@@ -10,7 +10,7 @@
 <div style="position: fixed; top: 0">
 	<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
 		<tr> 
-	<td style="width:10%" ></td><td width="72%"> Jessie Hui Wang</td>
+	<td style="width:10%" ></td><td width="72%"> Bhavesh Parmar</td>
 	<td style="font-size:16px"><a href="./index.md">Home</a></td>
 	<td style="width:3%"></td>
 	<td style="font-size:16px"><a href="./papers1.html">Papers</a></td>
