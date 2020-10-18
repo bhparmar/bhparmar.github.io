@@ -1,15 +1,8 @@
 <html>
-<meta name="Keyword" content="Wang Hui">
-<meta name="Keyword" content="Hui Wang">
-<meta name="Keyword" content="H. Wang">
-<meta name="Keyword" content="Jessie Hui Wang">
-<meta name="Keyword" content="Jessie H. Wang">
-<meta name="Keyword" content="Jessie Wang">
-<meta name="Keyword" content="jessie hui wang">
-<meta name="Keyword" content="hui wang">
-<meta name="Keyword" content="wang hui">
+<meta name="Keyword" content="Bhavesh Parmar">
+
 <head>
-<title>Jessie Hui Wang @ Tsinghua University</title>
+<title>Bhavesh Parmar @ L. D. College of Engineering</title>
 <link rel="stylesheet" type="text/css" href="./mycss_github.css" >
 </head>
 
@@ -18,13 +11,13 @@
 	<table style="align:center; width:100%; height:36px; font-size:18px; font-weight:bold; background-color:gray" >
 		<tr> 
 	<td style="width:10%" ></td><td width="72%"> Jessie Hui Wang</td>
-	<td style="font-size:16px"><a href="./index.html">Home</a></td>
+	<td style="font-size:16px"><a href="./index.md">Home</a></td>
 	<td style="width:3%"></td>
-	<td style="font-size:16px"><a href="./papers.html">Papers</a></td>
+	<td style="font-size:16px"><a href="./papers1.html">Papers</a></td>
 	<td style="width:3%"></td>
-	<td style="font-size:16px"><a href="./team.html">Team</a></td>
+	<td style="font-size:16px"><a href="./team1.html">Team</a></td>
 	<td style="width:3%"></td>
-	<td style="font-size:16px"><a href="./teaching.html">Teaching</a></td>
+	<td style="font-size:16px"><a href="./teaching1.html">Teaching</a></td>
 	<td style="width:6%"></td>
 		</tr>
 	</table>
@@ -33,7 +26,7 @@
 <div style="height: 36px"></div>
 
 <!-- The page starts from here -->
-
+<!--
 
 <div style="width: 800px;
             height: 260px;
@@ -91,6 +84,6 @@
 
 
 </div>
-
+-->
 </body>
 </html>
