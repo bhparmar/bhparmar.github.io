@@ -1,7 +1,7 @@
 <html>
 <meta name="Keyword" content="Bhavesh Parmar">
 
-<head><title>Bhavesh Parmar @ L. D. College of Engineering</title>
+<head><title>Dr. Bhavesh Parmar @ L. D. College of Engineering</title>
 <link rel="stylesheet" type="text/css" href="./mycss_github.css" >
 </head>
 
@@ -53,7 +53,7 @@
 
 <p class="larger">Education</p>
 <ul>
-<li><b>Ph.D. (Pursuing): in Biomedical Engineering, Gujarat Technological University.</b></li>
+<li><b>Ph.D. : in Biomedical Engineering, Gujarat Technological University.</b></li>
 	<ul>
 	<li>Advisor: Prof. <a href="http://xxx.html">Mehul Parikh</a></li>
 <!--	<li>Thesis: thesis title [<a href="files/xxx.pdf">Dissertation</a>]</li> -->
