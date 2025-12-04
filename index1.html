@@ -407,7 +407,14 @@
       font-size: 0.85rem;
       color: var(--color-muted);
     }
-
+    
+.photo-separator {
+  height: 4px; /* thickness of the line */
+  margin: 12px 0; /* spacing above and below */
+  border-radius: 999px; /* rounded ends */
+  background: linear-gradient(90deg, #1976d2, #e91e63); /* blue → pink */
+}
+    
     .floating-tag {
       position: absolute;
       bottom: 1.2rem;
@@ -1155,8 +1162,8 @@
               </div>
               <div class="photo-label1">
                 “भास्करकृपया मम मार्गः प्रकाश्यते।” <br />By Bhāskara’s grace, my path is illuminated.<br />
-              </div>
-
+            </div>
+            <div class="photo-separator"></div>
             <div class="bio-photo-card">
               <div class="bio-photo-wrapper">
                 <!-- Replace src with your own profile photo -->
@@ -1168,7 +1175,7 @@
               <div class="photo-label">
                 Teaching, creating, and shaping the future of healthcare technology.<br />
               </div>
-              
+              <div class="photo-separator"></div>         
              <div class="floating-tag"> <!--<div class="floating-tag"> -->
                 <span>Focus</span>
                 <span>AI · Biomedical · Research · Innovation </span>
