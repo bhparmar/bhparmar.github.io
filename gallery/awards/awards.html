@@ -1,0 +1,211 @@
+<!--
+Photo Album — Polygon-style single-file HTML
+Inspired by: templatemo_400_polygon (layout & feel)
+Features:
+- Full-screen hero with animated polygon SVG background
+- Responsive album grid with hover captions and lightbox
+- Category filters and search
+- Smooth scroll, subtle parallax, and CSS animations
+- Single-file: save as album.html and open in browser
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Polygon Photo Album</title>
+  <meta name="description" content="A responsive photo album webpage with polygon background and lightbox." />
+  <style>
+    :root{--bg:#0b1020;--accent:#6ee7b7;--muted:#99a3b6;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial;color:#e6f0ff;background:linear-gradient(180deg,#061322 0%,var(--bg) 100%);}
+
+    /* Hero */
+    .hero{position:relative;min-height:56vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-inner{position:relative;z-index:6;text-align:center;padding:44px 20px}
+    h1{font-size:clamp(28px,5vw,48px);margin:0;color:#fff;letter-spacing:-0.02em}
+    p.lead{color:var(--muted);margin-top:10px;font-size:15px}
+
+    /* polygon background (SVG) */
+    .poly-bg{position:absolute;inset:0;z-index:1;opacity:0.55}
+    .poly-layer{position:absolute;inset:0;transform:translateZ(0);will-change:transform}
+
+    /* top nav */
+    nav{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;z-index:10}
+    .brand{color:#fff;font-weight:600}
+    .nav-right{display:flex;gap:10px;align-items:center}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:#dcecff;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);border:none;color:#041022}
+
+    /* controls */
+    .controls{max-width:1200px;margin:18px auto 8px;padding:0 18px;display:flex;gap:12px;align-items:center;justify-content:flex-start}
+    .search{flex:1;min-width:180px;padding:10px 12px;border-radius:10px;border:none;background:#071226;color:var(--muted)}
+
+    /* album grid */
+    .container{max-width:1200px;margin:18px auto;padding:0 18px 80px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:var(--muted);cursor:pointer}
+    .chip.active{background:linear-gradient(90deg,rgba(110,231,183,0.12),rgba(79,70,229,0.08));color:#eafff5;border-color:rgba(110,231,183,0.2)}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .item{position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:0 8px 20px rgba(2,6,23,0.6);cursor:pointer;transition:transform .28s, box-shadow .28s}
+    .item:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(2,6,23,0.8)}
+    .thumb{width:100%;height:240px;object-fit:cover;display:block}
+    .caption{position:absolute;left:12px;bottom:12px;padding:8px 10px;border-radius:10px;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.25));color:#fff;font-size:13px}
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.7);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .18s}
+    .lightbox.open{opacity:1;pointer-events:auto}
+    .lightbox-card{max-width:92%;max-height:86%;padding:14px;border-radius:10px}
+    .lightbox-img{max-width:100%;max-height:76vh;object-fit:contain;border-radius:8px;display:block}
+    .lb-meta{display:flex;align-items:center;justify-content:space-between;color:#e6f0ff;margin-top:8px}
+
+    /* responsive tweaks */
+    @media (max-width:640px){.thumb{height:160px}.controls{padding:0 12px}.hero-inner{padding:28px}}
+
+    /* small animated accents */
+    .pulse{animation:pulse 3s infinite}
+    @keyframes pulse{0%{filter:blur(0)}50%{filter:blur(2px)}100%{filter:blur(0)}}
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">Polygon Album</div>
+    <div class="nav-right">
+      <button class="btn">About</button>
+      <button class="btn primary">Contact</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <!-- animated polygon background (SVG + simple CSS motion) -->
+    <svg class="poly-bg" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1">
+          <stop offset="0%" stop-color="#0ea5a1" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.9"/>
+        </linearGradient>
+      </defs>
+      <!-- simple triangles mesh -->
+      <g fill="url(#g1)" opacity="0.18">
+        <polygon points="0,0 400,0 200,180"></polygon>
+        <polygon points="400,0 800,0 600,200"></polygon>
+        <polygon points="800,0 1200,0 1000,160"></polygon>
+        <polygon points="200,180 600,200 400,380"></polygon>
+        <polygon points="600,200 1000,220 800,400"></polygon>
+        <polygon points="400,380 800,400 600,560"></polygon>
+      </g>
+    </svg>
+
+    <div class="hero-inner">
+      <h1>Memories — Photo Album</h1>
+      <p class="lead">A responsive photo album with polygon-inspired hero. Browse, filter and view photos in a lightweight lightbox.</p>
+    </div>
+  </header>
+
+  <div class="controls">
+    <input id="search" class="search" placeholder="Search photos by title or tag..." aria-label="Search photos" />
+    <div style="width:12px"></div>
+    <button id="resetBtn" class="btn">Reset</button>
+  </div>
+
+  <main class="container">
+    <div class="filters" id="filters" role="tablist" aria-label="Filter photos"></div>
+
+    <section class="grid" id="grid" aria-live="polite"></section>
+  </main>
+
+  <!-- lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+    <div class="lightbox-card">
+      <img id="lbImg" class="lightbox-img" alt="" />
+      <div class="lb-meta">
+        <div id="lbTitle">Title</div>
+        <div>
+          <button id="prev" class="btn">◀</button>
+          <button id="next" class="btn">▶</button>
+          <button id="close" class="btn primary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Customize this array with your images (URLs, titles, tags)
+    const PHOTOS = [
+      {id:1,title:'Sunset Dunes',src:'https://picsum.photos/id/1015/1600/1000',tags:['landscape','sunset']},
+      {id:2,title:'Lake Mountains',src:'https://picsum.photos/id/1025/1600/1000',tags:['landscape','water']},
+      {id:3,title:'City Lights',src:'https://picsum.photos/id/1031/1600/1000',tags:['city','night']},
+      {id:4,title:'Forest Trail',src:'https://picsum.photos/id/1056/1600/1000',tags:['forest','nature']},
+      {id:5,title:'Neon Street',src:'https://picsum.photos/id/1060/1600/1000',tags:['city','people']},
+      {id:6,title:'Coastal Cliffs',src:'https://picsum.photos/id/1074/1600/1000',tags:['aerial','coast']},
+      {id:7,title:'Macro Leaf',src:'https://picsum.photos/id/1081/1600/1000',tags:['macro','nature']},
+      {id:8,title:'Desert Line',src:'https://picsum.photos/id/1084/1600/1000',tags:['desert','abstract']}
+    ];
+
+    const grid = document.getElementById('grid');
+    const filtersEl = document.getElementById('filters');
+    const search = document.getElementById('search');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const closeBtn = document.getElementById('close');
+
+    let state = {filter:'all',query:'',index:0,current:PHOTOS};
+
+    // build tags
+    const TAGS = Array.from(new Set(PHOTOS.flatMap(p=>p.tags))).sort();
+
+    function createFilterChips(){
+      const all = document.createElement('button'); all.className='chip active'; all.textContent='All'; all.dataset.tag='all'; all.addEventListener('click',onFilter);
+      filtersEl.appendChild(all);
+      TAGS.forEach(t=>{ const b=document.createElement('button'); b.className='chip'; b.textContent=t; b.dataset.tag=t; b.addEventListener('click',onFilter); filtersEl.appendChild(b); });
+    }
+
+    function onFilter(e){ const tag = e.currentTarget.dataset.tag; state.filter = tag; Array.from(filtersEl.children).forEach(ch=>ch.classList.toggle('active', ch.dataset.tag===tag)); renderGrid(); }
+
+    function renderGrid(){ grid.innerHTML=''; const q = state.query.trim().toLowerCase(); const filtered = PHOTOS.filter(p=>{
+      const byTag = state.filter==='all' ? true : p.tags.includes(state.filter);
+      const byQuery = q ? (p.title.toLowerCase().includes(q) || p.tags.join(' ').includes(q)) : true;
+      return byTag && byQuery;
+    });
+    state.current = filtered;
+
+    filtered.forEach((p, i)=>{
+      const el = document.createElement('article'); el.className='item'; el.tabIndex=0; el.setAttribute('aria-label', p.title + ' — open');
+      el.innerHTML = `<img class="thumb" data-src="${p.src}" alt="${p.title}" loading="lazy" /><div class="caption">${p.title}</div>`;
+      el.addEventListener('click', ()=>openLightbox(i));
+      el.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') openLightbox(i); });
+      grid.appendChild(el);
+      // lazy load
+      const io = new IntersectionObserver((entries, obs)=>{ entries.forEach(en=>{ if(en.isIntersecting){ const im = en.target.querySelector('.thumb'); im.src = im.dataset.src; obs.disconnect(); } }); }, {threshold:0.05});
+      io.observe(el);
+    });
+    }
+
+    function openLightbox(i){ state.index = i; const item = state.current[i]; lbImg.src = item.src; lbImg.alt = item.title; lbTitle.textContent = item.title; lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden','false'); closeBtn.focus(); }
+    function closeLightbox(){ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; }
+    function next(){ state.index = (state.index+1) % state.current.length; const it = state.current[state.index]; lbImg.src = it.src; lbImg.alt = it.title; lbTitle.textContent = it.title; }
+    function prev(){ state.index = (state.index-1 + state.current.length) % state.current.length; const it = state.current[state.index]; lbImg.src = it.src; lbImg.alt = it.title; lbTitle.textContent = it.title; }
+
+    // handlers
+    nextBtn.addEventListener('click', next); prevBtn.addEventListener('click', prev); closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e=>{ if(lightbox.classList.contains('open')){ if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); if(e.key==='Escape') closeLightbox(); } });
+
+    search.addEventListener('input', e=>{ state.query = e.target.value; renderGrid(); });
+    resetBtn.addEventListener('click', ()=>{ state.filter='all'; state.query=''; search.value=''; Array.from(filtersEl.children).forEach(ch=>ch.classList.toggle('active', ch.dataset.tag==='all')); renderGrid(); });
+
+    // init
+    createFilterChips(); renderGrid();
+
+  </script>
+</body>
+</html>
