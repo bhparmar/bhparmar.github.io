@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bhavesh Parmar | Academic Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Personal academic website of Your Name – research, projects, publications, awards, skills, and contact."
+  />
+
+  <!-- Optional: Google Font (can be changed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --color-bg: #f6f7fb;
+      --color-surface: #ffffff;
+      --color-primary: #0f4c81; /* deep blue */
+      --color-primary-soft: #e1ecf6;
+      --color-accent: #ff8a3d;  /* warm accent */
+      --color-text: #1f2933;
+      --color-muted: #6b7280;
+      --shadow-soft: 0 12px 30px rgba(15, 76, 129, 0.09);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-full: 999px;
+      --max-width: 1080px;
+      --nav-height: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout helpers */
+
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    section:nth-of-type(even) {
+      background: #f1f4f8;
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--color-muted);
+      font-size: 0.98rem;
+    }
+
+    /* NAVBAR */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(246, 247, 251, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 76, 129, 0.06);
+    }
+
+    .nav {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .nav-logo-initials {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-primary-soft);
+      font-size: 0.9rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.3rem 0;
+      color: var(--color-muted);
+      font-weight: 500;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: var(--color-primary);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 76, 129, 0.25);
+      background: #fff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .nav-toggle span {
+      width: 18px;
+      height: 2px;
+      background: var(--color-primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-toggle span::before,
+    .nav-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--color-primary);
+      transition: transform 0.2s ease, top 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-toggle span::before {
+      top: -6px;
+    }
+
+    .nav-toggle span::after {
+      top: 6px;
+    }
+
+    .nav-toggle.active span {
+      background: transparent;
+    }
+
+    .nav-toggle.active span::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .nav-toggle.active span::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+
+    /* HERO / BIO */
+
+    #bio {
+      padding-top: 5.5rem;
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .bio-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-primary);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: var(--color-primary-soft);
+      margin-bottom: 0.9rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+    }
+
+    .bio-name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--color-primary);
+    }
+
+    .bio-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .bio-summary {
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
+      text-align: justify;
+    }
+
+    .bio-detail {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      margin-bottom: 1.6rem;
+      text-align: justify;
+    }
+
+    .bio-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn,
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background 0.15s ease, transform 0.15s ease,
+        box-shadow 0.15s ease, border-color 0.15s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn {
+      background: var(--color-primary);
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(15, 76, 129, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15, 76, 129, 0.28);
+    }
+
+    .btn-outline {
+      border-color: rgba(15, 76, 129, 0.25);
+      color: var(--color-primary);
+      background: #fff;
+    }
+
+    .btn-outline:hover {
+      background: var(--color-primary-soft);
+      border-color: transparent;
+    }
+
+    .bio-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+
+    .bio-meta-item strong {
+      display: block;
+      color: var(--color-text);
+      margin-bottom: 0.25rem;
+    }
+
+    .bio-photo-card {
+      background: linear-gradient(145deg, #e1ecf6, #fff);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .bio-photo-wrapper {
+      width: 200px;
+      height: 200px;
+      border-radius: 30px;
+      overflow: hidden;
+      margin: 0 auto 1.2rem auto;
+      border: 4px solid #ffffff;
+    }
+
+    .bio-photo-card1 {
+      background: linear-gradient(245deg, #e1ecf6, #fff);
+      border-radius: var(--radius-lg);
+      padding: 1.8rem;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .bio-photo-wrapper1 {
+      width: 300px;
+      height: 350px;
+      border-radius: 30px;
+      overflow: hidden;
+      margin: 0 auto 1.2rem auto;
+      border: 4px solid #888888;
+    }
+    .photo-label1 {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+
+    .bio-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-label {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+
+.photo-separator {
+  height: 4px; /* thickness of the line */
+  margin: 12px 0; /* spacing above and below */
+  border-radius: 999px; /* rounded ends */
+  background: linear-gradient(90deg, #1976d2, #e91e63); /* blue → pink */
+}
+
+    .floating-tag {
+      position: relative;
+      bottom: 1.2rem;
+      right: 1.2rem;
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 0.6rem 0.8rem;
+      font-size: 0.8rem;
+      box-shadow: 0 10px 25px rgba(15, 76, 129, 0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      max-width: fit-content;
+    }
+
+    .floating-tag span:first-child {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-muted);
+    }
+
+    .floating-tag span:last-child {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 76, 129, 0.15);
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .social-pill:hover {
+      background: var(--color-primary-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(15, 76, 129, 0.18);
+    }
+
+    /* CARDS & GRIDS */
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(15, 76, 129, 0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: var(--color-primary-soft);
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    .card-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--color-text);
+      margin-bottom: 0.8rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .link-inline {
+      font-size: 0.85rem;
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.45rem;
+    }
+
+    .pill {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: #eff4fb;
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    /* -------- Project card image styles --------- */
+    .project-image-wrapper {
+      width: 100%;
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #e9eef6;
+      margin: 0 0 0.9rem 0;
+      display: block;
+      position: relative;
+    }
+
+    .project-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.22s ease, filter 0.22s ease;
+      cursor: pointer;
+    }
+
+    .card .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--color-muted);
+    }
+
+    /* small hover effect */
+    .card:hover .project-image-wrapper img {
+      transform: scale(1.03);
+      filter: brightness(0.97);
+    }
+
+    /* PUBLICATIONS */
+
+    .pub-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    .pub-filter-btn {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: #ffffff;
+      color: var(--color-muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: background 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease;
+    }
+
+    .pub-filter-btn.active {
+      background: var(--color-primary);
+      color: #ffffff;
+      border-color: var(--color-primary);
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .pub-item {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1rem 1.1rem;
+      box-shadow: 0 4px 14px rgba(15, 76, 129, 0.06);
+    }
+
+    .pub-venue-year {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .pub-title {
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .pub-authors {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+    }
+
+    .pub-link-pill {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: var(--color-primary);
+      border: 1px solid rgba(15, 76, 129, 0.18);
+    }
+
+    /* AWARDS */
+
+    .timeline {
+      border-left: 2px solid #e0e4ee;
+      padding-left: 1.3rem;
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 0.2rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -1.05rem;
+      top: 0.35rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--color-accent);
+      box-shadow: 0 0 0 4px rgba(255, 138, 61, 0.25);
+    }
+
+    .timeline-year {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--color-muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .timeline-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-org {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+    }
+
+        /* PATENTS */
+        /* PATENTS TABLE */
+
+    .patent-table-wrapper {
+      width: 100%;
+      margin-top: 0.5rem;
+      overflow-x: auto;             /* horizontal scroll on small screens */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .patent-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      min-width: 720px;             /* ensures columns don't squish too much */
+    }
+
+    .patent-table thead {
+      background: var(--color-primary-soft);
+    }
+
+    .patent-table th,
+    .patent-table td {
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: middle;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .patent-table th {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .patent-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .patent-photo {
+      width: 90px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    .patent-table td img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .patent-table {
+        font-size: 0.8rem;
+      }
+    }
+
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skills-category-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--color-text);
+    }
+
+    .skills-list {
+      list-style: none;
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .skills-list li::before {
+      content: "• ";
+      color: var(--color-primary);
+    }
+
+    /* SERVICES */
+
+    .service-section {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-block-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .service-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .service-list li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .service-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--color-primary);
+      font-size: 0.8rem;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background: #e5e7eb;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .gallery-item::after {
+      content: "View";
+      position: absolute;
+      bottom: 0.45rem;
+      right: 0.55rem;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.9);
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .album-label {
+      position: absolute;
+      bottom: 0.6rem;
+      left: 0.6rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.75rem;
+      border-radius: 6px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 1.5rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      position: relative;
+    }
+
+    .lightbox-image {
+      width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: flex-start;
+    }
+
+    .contact-highlight {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.6rem 1.7rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-highlight h3 {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .contact-list strong {
+      color: var(--color-text);
+    }
+
+    .contact-form {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 1.6rem 1.7rem;
+      box-shadow: 0 8px 18px rgba(15, 76, 129, 0.08);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.85rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: var(--color-muted);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      border: 1px solid #d0d7e2;
+      padding: 0.55rem 0.7rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background 0.15s ease;
+      background: #f9fafb;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 1px rgba(15, 76, 129, 0.2);
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 1.4rem 0 1.8rem;
+      font-size: 0.82rem;
+      color: var(--color-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-link {
+      text-decoration: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 960px) {
+      .bio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .service-section {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-menu {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: var(--nav-height);
+        background: rgba(246, 247, 251, 0.99);
+        flex-direction: column;
+        padding: 0.8rem 1.25rem 1.1rem;
+        gap: 0.7rem;
+        border-bottom: 1px solid rgba(15, 76, 129, 0.06);
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      #bio {
+        padding-top: 4rem;
+      }
+
+      .grid-2,
+      .grid-3,
+      .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- NAVBAR -->
+    <header>
+      <div class="container">
+        <nav class="nav" aria-label="Main navigation">
+          <div class="nav-brand">
+            <div class="nav-logo-initials">BP</div>
+            <div>
+              <div style="font-size: 0.96rem;">Bhavesh Parmar</div>
+              <div style="font-size: 0.76rem; color: var(--color-muted);">
+                Academic Researcher | Healthcare Innovation
+              </div>
+            </div>
+          </div>
+
+          <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+          </button>
+
+          <div class="nav-menu" id="navMenu">
+            <a href="#bio" class="nav-link active">Bio</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#publications" class="nav-link">Publications</a>
+            <a href="#patents" class="nav-link">Patents</a>
+            <a href="#awards" class="nav-link">Awards</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#gallery" class="nav-link">Gallery</a>
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- BIO / HERO -->
+      <section id="bio">
+        <div class="container">
+          <div class="bio-grid">
+            <div class="bio-card">
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Academic Researcher | Healthcare Innovation
+              </div>
+              <h1 class="bio-name">Bhavesh Parmar</h1>
+              <div class="bio-title">
+                Assistant Professor · Biomedical Engineering · <br /> L. D. College of Engineering, Ahmedabad
+              </div>
+              <p class="bio-summary">
+                I work at the intersection of biomedical engineering, AI,
+                biomechanics, and medical imaging, developing intelligent
+                systems for Medical Device development, clinical diagnostics,
+                and assistive healthcare. My research focuses on translating
+                machine learning innovations into practical tools that enhance
+                decision-making and improve patient outcomes.
+              </p>
+              <p class="bio-detail">
+                Working at the intersection of biomedical engineering, AI, biomechanics,
+                 and medical imaging, focusing on intelligent diagnostic systems,
+                 assistive technologies, and clinically meaningful imaging solutions.
+                 My interests include brain tumor segmentation, non-invasive vital-sign
+                 monitoring, optical and digital sensing, and affordable, standards-aligned
+                 medical devices. I aim to create engineering innovations that enhance
+                 clinical decision-making, accessibility, and patient safety—through
+                 AI-driven imaging workflows, translational prototypes, and mentoring
+                 high-impact teams. Ultimately, I strive to advance equitable, reliable
+                 healthcare technologies that can be deployed in real-world settings and
+                 help shape future standards and policy.
+              </p>
+
+              <div class="bio-actions">
+                <a href="ResumeOCT2024BHP.pdf" class="btn" target="_blank" rel="noreferrer">
+                  Download CV (PDF)
+                </a>
+                <a href="https://scholar.google.com/citations?user=KKOeuF4AAAAJ" class="btn-outline" target="_blank" rel="noreferrer">
+                  Google Scholar
+                </a>
+              </div>
+
+              <div class="bio-meta">
+                <div class="bio-meta-item">
+                  <strong>Affiliation</strong>
+                  L. D. College of Engineering<br />
+                  Ahmedabad, India
+                </div>
+                <div class="bio-meta-item">
+                  <strong>Email</strong>
+                  <a href="mailto:your.email@example.com">bhparmar@ldce.ac.in</a>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.3rem;">
+                <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--color-muted); margin-bottom: 0.45rem;">
+                  Profiles
+                </div>
+                <div class="social-links">
+                  <a class="social-pill" href="https://scholar.google.com/citations?user=KKOeuF4AAAAJ" target="_blank" rel="noreferrer">
+                    <span>Google Scholar</span>
+                  </a>
+                  <a class="social-pill" href="https://orcid.org/0000-0003-0021-9101" target="_blank" rel="noreferrer">
+                    <span>ORCID</span>
+                  </a>
+                  <a class="social-pill" href="https://www.linkedin.com/in/bhparmar1/" target="_blank" rel="noreferrer">
+                    <span>LinkedIn</span>
+                  </a>
+                  <a class="social-pill" href="https://github.com/bhparmar" target="_blank" rel="noreferrer">
+                    <span>GitHub</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="bio-photo-card">
+              <div class="bio-photo-wrapper1">
+                <!-- Replace src with your own profile photo -->
+                <img
+                  src="bio/asthetic.png?text=Sun worship+Photo"
+                  alt="Bhavesh Parmar"
+                />
+              </div>
+              <div class="photo-label">
+                “भास्करकृपया मम मार्गः प्रकाश्यते।” <br />By Sun god’s grace, my path is illuminated.<br />
+              </div>
+              <div class="photo-separator"></div>
+              <!-- <div class="bio-photo-card">-->
+              <div class="bio-photo-wrapper">
+                <!-- Replace src with your own profile photo -->
+                <img
+                  src="bio/bhpProfile.png?text=Bhavesh Parmar+Photo"
+                  alt="Bhavesh Parmar"
+                />
+              </div>
+              <div class="photo-label">
+                Teaching, creating, and shaping the future of healthcare technology.<br />
+              </div>
+              <div class="photo-separator"></div>
+              <div>
+                <div class="floating-tag">
+                  <span>Focus</span>
+                  <span>AI · Biomedical · Research · Innovation </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">
+              Selected projects illustrating recent research and technical work.
+            </p>
+          </div>
+
+          <div class="grid grid-3">
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Brain Tumor Segmentation</h3>
+                <span class="tag">AI · Healthcare</span>
+              </div>
+              <div class="card-meta">2023 · Lead Researcher</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/braintumor.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <p class="card-body" align=justify>
+                Automated detection, segmentation, and characterization of brain
+                 tumors from multimodal MRI using advanced deep learning
+                 architectures. It aims to improve diagnostic accuracy and
+                 support clinical decision-making by enabling robust, efficient,
+                  and clinically deployable neuroimaging analysis..
+              </p>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+              <div class="pill-row">
+                <span class="pill">Python</span>
+                <span class="pill">PyTorch</span>
+                <span class="pill">Medical Imaging</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Capnometer</h3>
+                <span class="tag">Device · Clinical</span>
+              </div>
+              <div class="card-meta">2022 · Co-Investigator</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/capnometer.jpg?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <p class="card-body" align=justify>
+                Design and development of a non-invasive system for real-time
+                measurement and monitoring of respiratory carbon dioxide (CO₂)
+                levels. It enables accurate assessment of ventilation status for
+                 clinical and critical-care applications, supporting early
+                 detection of respiratory abnormalities and improved patient
+                 safety..
+              </p>
+              <div class="card-footer">
+                <div>Funding / Grant (if any)</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  Read more →
+                </a>
+              </div>
+              <div class="pill-row">
+                <span class="pill">Embedded</span>
+                <span class="pill">Signal Processing</span>
+                <span class="pill">Prototype</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">Goniometer</h3>
+                <span class="tag">Standards</span>
+              </div>
+              <div class="card-meta">2021 · Contributor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/goniometer.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <p class="card-body" align=justify>
+                Precise joint-angle measurement system for assessing human limb
+                movement in clinical and rehabilitation settings. It enables
+                accurate monitoring of range of motion to support physiotherapy
+                evaluation, progress tracking, and biomechanical analysis..
+              </p>
+              <div class="card-footer">
+                <div>Committee / Working Group</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  Documentation →
+                </a>
+              </div>
+              <div class="pill-row">
+                <span class="pill">IEC / ISO</span>
+                <span class="pill">Healthcare</span>
+                <span class="pill">Standardization</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-1</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-2</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-3</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-4</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-5</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-6</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header">
+                <h3 class="card-title">SSIP-7</h3>
+              </div>
+              <div class="card-meta">2023 · Mentor</div>
+              <!-- Project image (replace src with your file path or URL) -->
+              <a class="project-image-wrapper" href="#" aria-label="Open Project Title One image">
+                <img src="projects/image.png?text=Project+One" alt="Project Title One image" data-large="https://via.placeholder.com/1200x900.png?text=Project+One+Large">
+              </a>
+              <div class="card-footer">
+                <div>University / Lab / Collaborators</div>
+                <a href="#" class="link-inline" target="_blank" rel="noreferrer">
+                  View code →
+                </a>
+              </div>
+            </article>
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </section>
+
+      <section id="publications">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Publications</h2>
+            <p class="section-subtitle">
+              Selected journal articles and conference papers.
+            </p>
+          </div>
+
+          <div class="pub-filters">
+            <button class="pub-filter-btn active" data-filter="all">
+              All
+            </button>
+            <button class="pub-filter-btn" data-filter="journal">
+              Journals
+            </button>
+            <button class="pub-filter-btn" data-filter="conference">
+              Conferences
+            </button>
+            <button class="pub-filter-btn" data-filter="preprint">
+              Preprints
+            </button>
+            <button class="pub-filter-btn" data-filter="talk">
+              Expert Talk
+            </button>
+          </div>
+
+          <div class="pub-list">
+            <!-- 1. Disability & Rehabilitation: Assistive Technology -->
+            <article class="pub-item" data-type="journal">
+              <div class="pub-venue-year">
+                Disability and Rehabilitation: Assistive Technology · 2022
+              </div>
+              <div class="pub-title">
+                Assistive device using computer vision and image processing for visually impaired; review and current status.
+              </div>
+              <div class="pub-authors">
+                Karan Patel, <strong>Bhavesh Parmar</strong>
+              </div>
+              <div class="pub-links">
+                <a
+                  href="https://www.tandfonline.com/doi/full/10.1080/17483107.2020.1786731"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Publisher
+                </a>
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/32608288/"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  PubMed
+                </a>
+                <a
+                  href="https://doi.org/10.1080/17483107.2020.1786731"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  DOI
+                </a>
+              </div>
+            </article>
+
+            <!-- 2. JIST – Uncertainty in Brain Tumor segmentation -->
+            <article class="pub-item" data-type="journal">
+              <div class="pub-venue-year">
+                Journal of Integrated Science &amp; Technology · 2024
+              </div>
+              <div class="pub-title">
+                Estimation of uncertainty in Brain Tumor segmentation using modified multistage 3D-UNet on multimodal MRI images.
+              </div>
+              <div class="pub-authors">
+                <strong>Bhavesh Parmar</strong>, Mehul Parikh
+              </div>
+              <div class="pub-links">
+                <a
+                  href="https://pubs.thesciencein.org/journal/index.php/jist/article/view/a802"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Article
+                </a>
+                <a
+                  href="https://doi.org/10.62110/sciencein.jist.2024.v12.802"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  DOI
+                </a>
+                <a
+                  href="https://pubs.thesciencein.org/journal/index.php/jist/article/download/a802/531/3077"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  PDF
+                </a>
+              </div>
+            </article>
+
+            <!-- 3. IRJET – GAN-based augmentation paper -->
+            <article class="pub-item" data-type="journal">
+              <div class="pub-venue-year">
+                International Research Journal of Engineering and Technology (IRJET) · 2024
+              </div>
+              <div class="pub-title">
+                Augmentation of Multimodal 3D Magnetic Resonance Imaging using Generative Adversarial Network for Brain Tumor Segmentation.
+              </div>
+              <div class="pub-authors">
+                <strong>Bhavesh Parmar</strong>, Mehul Parikh
+              </div>
+              <div class="pub-links">
+                <a
+                  href="https://www.irjet.net/archives/V11/i1/IRJET-V11I130.pdf"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  PDF
+                </a>
+                <a
+                  href="https://www.irjet.net/volume11-issue1"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Journal issue
+                </a>
+              </div>
+            </article>
+
+            <!-- 4. BrainLes @ MICCAI – LNCS chapter -->
+            <article class="pub-item" data-type="conference">
+              <div class="pub-venue-year">
+                BrainLes 2020 (LNCS 12659, Springer) · 2021
+              </div>
+              <div class="pub-title">
+                Brain Tumor Segmentation and Survival Prediction Using Patch Based Modified 3D U-Net.
+              </div>
+              <div class="pub-authors">
+                <strong>Bhavesh Parmar</strong>, Mehul Parikh
+              </div>
+              <div class="pub-links">
+                <a
+                  href="https://link.springer.com/chapter/10.1007/978-3-030-72087-2_35"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Springer
+                </a>
+                <a
+                  href="https://doi.org/10.1007/978-3-030-72087-2_35"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  DOI
+                </a>
+              </div>
+            </article>
+
+            <!-- 5. ICWET 2011 – Gesture recognition paper -->
+            <article class="pub-item" data-type="conference">
+              <div class="pub-venue-year">
+                ICWET · 2011
+              </div>
+              <div class="pub-title">
+                Body parts detection in gesture recognition using color information.
+              </div>
+              <div class="pub-authors">
+                S. M. Bopalkar, Poornima Talwai, <strong>Bhavesh Parmar</strong>
+              </div>
+              <div class="pub-links">
+                <a
+                  href="https://dl.acm.org/doi/10.1145/1980022.1980054"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  ACM
+                </a>
+                <a
+                  href="https://dblp.org/rec/conf/icwet/BopalkarTP11"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  DBLP
+                </a>
+              </div>
+            </article>
+
+            <!-- 6. IEEE SPS PhD forum poster (conference / symposium) -->
+            <article class="pub-item" data-type="conference">
+              <div class="pub-venue-year">
+                IEEE SPS GS &amp; IEEE PDEU SPS PhD Forum · 2024
+              </div>
+              <div class="pub-title">
+                Uncertainty Aware Brain Tumor Segmentation and Survival Prediction on Multimodal MRI using Patch Based Modified 3D U-Net.
+              </div>
+              <div class="pub-authors">
+                <strong>Bhavesh Parmar</strong>, Mehul Parikh
+              </div>
+              <div class="pub-links">
+                <a
+                  href="https://ieeespsgs.org/ignite/"
+                  class="pub-link-pill"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Event page
+                </a>
+              </div>
+            </article>
+
+            <!-- You can add more items here following the same pattern -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ====PATENTS ================ -->
+      <section id="patents">
+        <div class="container">
+
+          <h2 class="section-title">Patents</h2>
+          <p class="section-subtitle">
+            Filed, published, and granted intellectual property contributions.
+          </p>
+
+          <div class="patent-table-wrapper">
+            <table class="patent-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Application / Patent No.</th>
+                  <th>Date of<br>Application / Grant</th>
+                  <th>Photograph</th>
+                  <th>Description</th>
+                  <th>TRL</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <!-- 1. System for Respiratory CO2 Measurement & Monitoring -->
+                <tr>
+                  <td>
+                    System for Respiratory CO<sub>2</sub> Measurement &amp; Monitoring
+                  </td>
+                  <td>
+                    Granted – Indian Patent
+                  </td>
+                  <td>
+                    Patent No. 394921
+                  </td>
+                  <td>
+                    19-04-2022
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/respiratory-co2-monitor.png"
+                      alt="System for Respiratory CO2 Measurement & Monitoring"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    System for continuous measurement and monitoring of respiratory
+                    carbon dioxide levels for clinical and critical-care applications.
+                  </td>
+                  <td>
+                    9
+                  </td>
+                </tr>
+
+                <!-- 2. PRAN – Protective Respiratory Auxiliary Node -->
+                <tr>
+                  <td>
+                    PRAN – Protective Respiratory Auxiliary Node
+                  </td>
+                  <td>
+                    Granted – Indian Patent
+                  </td>
+                  <td>
+                    Patent No. 397604
+                  </td>
+                  <td>
+                    25-05-2022
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/pran.png"
+                      alt="PRAN – Protective Respiratory Auxiliary Node"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    Auxiliary respiratory support and monitoring device designed to
+                    enhance safety and protection during respiratory therapy and
+                    emergency care.
+                  </td>
+                  <td>
+                    6
+                  </td>
+                </tr>
+
+                <!-- 3. NIVARAN – Non Invasive Vital Sign & Respiratory Analyzer -->
+                <tr>
+                  <td>
+                    NIVARAN – Non Invasive Vital Sign &amp; Respiratory Analyzer
+                  </td>
+                  <td>
+                    Granted – Indian Patent
+                  </td>
+                  <td>
+                    Patent No. 528219
+                  </td>
+                  <td>
+                    15-03-2024
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/nivaran.png"
+                      alt="NIVARAN – Non Invasive Vital Sign & Respiratory Analyzer"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    Non-invasive system for integrated monitoring of vital signs and
+                    respiratory parameters to support bedside and point-of-care
+                    decision making.
+                  </td>
+                  <td>
+                    5
+                  </td>
+                </tr>
+
+                <!-- 4. Early Diagnosis of Rheumatoid Arthritis: Non-Invasively -->
+                <tr>
+                  <td>
+                    Early Diagnosis of Rheumatoid Arthritis: Non-Invasively
+                  </td>
+                  <td>
+                    Granted – Indian Patent
+                  </td>
+                  <td>
+                    Patent No. 555588
+                  </td>
+                  <td>
+                    29-11-2024
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/rheumatoid-arthritis-diagnosis.png"
+                      alt="Early Diagnosis of Rheumatoid Arthritis: Non-Invasively"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    Method and system for early, non-invasive diagnosis of rheumatoid
+                    arthritis using quantitative measurements and imaging-based
+                    analysis.
+                  </td>
+                  <td>
+                    4
+                  </td>
+                </tr>
+
+                <!-- 5. Brain Tumor Classification & Segmentation on Embedded Platform -->
+                <tr>
+                  <td>
+                    System and Method for Brain Tumor Classification and Segmentation
+                    Using Deep Learning on Embedded Platform
+                  </td>
+                  <td>
+                    Granted – Indian Patent
+                  </td>
+                  <td>
+                    Patent No. 566661
+                  </td>
+                  <td>
+                    26-05-2025
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/brain-tumor-embedded.png"
+                      alt="Brain Tumor Classification and Segmentation Using Deep Learning on Embedded Platform"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    Deep-learning–based system for automated brain tumor
+                    classification and segmentation, optimized for deployment on
+                    embedded hardware for accessible neuroimaging workflows.
+                  </td>
+                  <td>
+                    5
+                  </td>
+                </tr>
+                <!-- 6. Adaptive Load-Responsive Crutch for Multi-Terrain Mobility -->
+                <tr>
+                  <td>
+                    Adaptive Load-Responsive Crutch for Multi-Terrain Mobility
+                  </td>
+                  <td>
+                    Indian Design Application
+                  </td>
+                  <td>
+                    Design Application No. 467508-001
+                  </td>
+                  <td>
+                    28-07-2025
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/crutch-use.png"
+                      alt="Adaptive Load-Responsive Crutch for Multi-Terrain Mobility (Design)"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    Ergonomic design and advanced materials enable superior
+                    stability, comfort, and safe mobility across uneven surfaces
+                     and stairs compared to conventional crutches..
+                  <td>
+                    6
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Adaptive Load-Responsive Crutch for Multi-Terrain Mobility
+                  </td>
+                  <td>
+                    Indian Patent Application
+                  </td>
+                  <td>
+                    Patent Application No. 202521071199
+                  </td>
+                  <td>
+                    26-07-2025
+                  </td>
+                  <td>
+                    <div class="gallery-item">
+                    <img
+                      src="patents/crutch.jpg"
+                      alt="Adaptive Load-Responsive Crutch for Multi-Terrain Mobility"
+                      class="patent-photo"
+                    />
+                  </div>
+                  </td>
+                  <td>
+                    Dynamically responsive assistive device that uses
+                    biomechanically engineered curve suspensions and a terrain-
+                    adaptive foot to absorb impact, restore energy, and
+                    distribute load efficiently.
+                  <td>
+                    5
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:0.8rem;color:var(--color-muted);margin-top:0.75rem;">
+            TRL: Technology Readiness Level (1–9).
+          </p>
+
+        </div>
+      </section>
+
+
+      <!-- AWARDS -->
+      <section id="awards">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Awards & Honors</h2>
+            <p class="section-subtitle">
+              Recognitions, fellowships, and competitive grants.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2024</div>
+              <div class="timeline-title">Best Paper Award</div>
+              <div class="timeline-org">Conference Name, Location</div>
+              <div class="timeline-desc">
+                Short description of the work for which you received the award.
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2023</div>
+              <div class="timeline-title">Research Fellowship</div>
+              <div class="timeline-org">Funding Agency / Foundation</div>
+              <div class="timeline-desc">
+                Mention the fellowship scope or focus area (e.g., AI for
+                Healthcare).
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2021</div>
+              <div class="timeline-title">Teaching Excellence Award</div>
+              <div class="timeline-org">Your University</div>
+              <div class="timeline-desc">
+                Brief note on the course(s) or efforts recognized by this award.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Skills</h2>
+            <p class="section-subtitle">
+              Technical, research, and domain-specific skills.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="card">
+              <div class="skills-category-title">Technical</div>
+              <ul class="skills-list">
+                <li>Python, MATLAB, C/C++</li>
+                <li>PyTorch, TensorFlow, scikit-learn</li>
+                <li>Signal & image processing</li>
+                <li>Data visualization & dashboards</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="skills-category-title">Research</div>
+              <ul class="skills-list">
+                <li>Experimental design & analysis</li>
+                <li>Clinical / lab data collection</li>
+                <li>Statistical modeling</li>
+                <li>Scientific writing & peer review</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="skills-category-title">Domain</div>
+              <ul class="skills-list">
+                <li>Medical imaging & diagnostics</li>
+                <li>Biomedical instrumentation</li>
+                <li>AI in healthcare workflows</li>
+                <li>Standardization and regulation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Services</h2>
+            <p class="section-subtitle">
+              Academic, professional, and community service activities.
+            </p>
+          </div>
+
+          <div class="service-section">
+            <div class="card">
+              <div class="service-block-title">Teaching & Supervision</div>
+              <ul class="service-list">
+                <li>Undergraduate and postgraduate course instruction</li>
+                <li>Supervision of student projects and theses</li>
+                <li>Guest lectures and workshops</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="service-block-title">Reviewing & Committees</div>
+              <ul class="service-list">
+                <li>Reviewer for journals (e.g., Journal A, Journal B)</li>
+                <li>Program committee member for conferences</li>
+                <li>Grant panel or advisory roles (if applicable)</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="service-block-title">Consulting & Collaboration</div>
+              <ul class="service-list">
+                <li>Consulting for healthcare or med-tech startups</li>
+                <li>Industry-academia collaboration projects</li>
+                <li>Training and capacity-building programs</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="service-block-title">Outreach</div>
+              <ul class="service-list">
+                <li>Public talks on AI and healthcare</li>
+                <li>Mentoring students and early-career researchers</li>
+                <li>Community or policy engagement initiatives</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHOTO GALLERY -->
+      <section id="gallery">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Photo Gallery</h2>
+            <p class="section-subtitle">
+              Moments from conferences, workshops, lab activities, and awards.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <!-- Replace the placeholder URLs with your own images -->
+            <div class="gallery-item">
+              <img
+                src="gallery/1.jpeg?text=Conference+Photo"
+                alt="Conference photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/2.jpeg?text=Lab+Photo"
+                alt="Lab photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/3.jpeg?text=Workshop"
+                alt="Workshop photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/4.jpeg?text=Award+Ceremony"
+                alt="Award ceremony photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/5.jpeg?text=Teaching"
+                alt="Teaching photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/6.jpeg?text=Teaching"
+                alt="Teaching photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/7.jpeg?text=Teaching"
+                alt="Teaching photo placeholder"
+              />
+            </div>
+            <div class="gallery-item">
+              <img
+                src="gallery/8.jpeg?text=Teaching"
+                alt="Teaching photo placeholder"
+              />
+            </div>
+          </div>
+          <!-- EVENT ALBUM THUMBNAILS -->
+            <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--color-primary);">
+              Event Albums
+            </h3>
+
+            <div class="gallery-grid" style="margin-bottom: 2rem;">
+
+              <!-- Conference Album -->
+              <a href="gallery/conferences/" class="gallery-item" title="Conferences">
+                <img src="gallery/conferences/cover.jpeg" alt="Conference Album" />
+                <div class="album-label">Conferences</div>
+              </a>
+
+              <!-- Workshops Album -->
+              <a href="gallery/workshops/" class="gallery-item" title="Workshops">
+                <img src="gallery/workshops/cover.jpeg" alt="Workshops Album" />
+                <div class="album-label">Workshops</div>
+              </a>
+
+              <!-- Teaching Album -->
+              <a href="gallery/teaching/" class="gallery-item" title="Teaching Sessions">
+                <img src="gallery/teaching/cover.jpeg" alt="Teaching Album" />
+                <div class="album-label">Teaching</div>
+              </a>
+
+              <!-- Awards Album -->
+              <a href="gallery/awards/" class="gallery-item" title="Award Ceremonies">
+                <img src="gallery/awards/cover.jpeg" alt="Awards Album" />
+                <div class="album-label">Awards</div>
+              </a>
+
+              <!-- Lab Album -->
+              <a href="gallery/lab/" class="gallery-item" title="Lab Activities">
+                <img src="gallery/lab/cover.jpeg" alt="Lab Activities Album" />
+                <div class="album-label">Lab Activities</div>
+              </a>
+
+              <!-- Field Visit Album -->
+              <a href="gallery/field-visits/" class="gallery-item" title="Field Visits">
+                <img src="gallery/field-visits/cover.jpeg" alt="Field Visits Album" />
+                <div class="album-label">Field Visits</div>
+              </a>
+
+              <!-- Team Album -->
+              <a href="gallery/team/" class="gallery-item" title="Team Events">
+                <img src="gallery/team/cover.jpeg" alt="Team Events Album" />
+                <div class="album-label">Team Events</div>
+              </a>
+              <!-- Team1 Album -->
+              <a href="gallery/team/" class="gallery-item" title="Team1 Events">
+                <img src="gallery/team/cover.jpeg" alt="Team Events Album" />
+                <div class="album-label">Team Events</div>
+              </a>
+
+            </div>
+
+          </div>
+      </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">
+              Interested in collaboration, supervision, or consulting? Feel free
+              to reach out.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-highlight">
+              <h3>Contact Details</h3>
+              <ul class="contact-list">
+                <li>
+                  <strong>Email:</strong>
+                  <a href="mailto:bhparmar@ldce.ac.in">
+                    bhparmar@ldce.ac.in
+                  </a>
+                </li>
+                <li>
+                  <strong>Affiliation:</strong> Biomedical Engineering, L. D. College of Engineering
+                </li>
+                <li>
+                  <strong>Address:</strong> Navarangpura, Ahmedabad, Gujarat - 380 015,
+                  India
+                </li>
+                <li>
+                  <strong>Office Hours:</strong> By appointment
+                </li>
+              </ul>
+            </div>
+
+            <form class="contact-form">
+              <h3 style="margin-bottom: 0.8rem;">Send a Message</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input id="name" type="text" name="name" placeholder="Your full name" />
+                </div>
+                <div class="form-group">
+                  <label for="email-input">Email</label>
+                  <input
+                    id="email-input"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input
+                  id="subject"
+                  type="text"
+                  name="subject"
+                  placeholder="Reason for contacting"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Write your message here..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <button class="btn" type="submit">
+                  Submit (demo only)
+                </button>
+                <div class="form-note">
+                  This is a static form for demonstration. To make it functional
+                  on GitHub Pages, connect it to a service like Formspree,
+                  Getform, or your own backend.
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            © <span id="year"></span> Bhavesh Parmar · All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="#bio" class="footer-link">Home</a>
+            <a href="ResumeOCT2024BHP.pdf" class="footer-link">CV</a>
+            <a href="https://github.com/bhparmar" target="_blank" rel="noreferrer" class="footer-link">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- LIGHTBOX FOR GALLERY -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <img src="" alt="Gallery image preview" class="lightbox-image" />
+      <button class="lightbox-close" type="button" aria-label="Close preview">
+        ×
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const navToggle = document.querySelector(".nav-toggle");
+    const navMenu = document.getElementById("navMenu");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navToggle.addEventListener("click", () => {
+      navToggle.classList.toggle("active");
+      navMenu.classList.toggle("open");
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navToggle.classList.remove("active");
+        navMenu.classList.remove("open");
+      });
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.getAttribute("id");
+          const navLink = document.querySelector(
+            '.nav-link[href="#' + id + '"]'
+          );
+          if (entry.isIntersecting) {
+            navLinks.forEach((link) => link.classList.remove("active"));
+            if (navLink) navLink.classList.add("active");
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.35,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Publications filter (simple client-side filter)
+    const pubFilterBtns = document.querySelectorAll(".pub-filter-btn");
+    const pubItems = document.querySelectorAll(".pub-item");
+
+    pubFilterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const filter = btn.getAttribute("data-filter");
+        pubFilterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        pubItems.forEach((item) => {
+          const type = item.getAttribute("data-type");
+          if (filter === "all" || filter === type) {
+            item.style.display = "block";
+          } else {
+            item.style.display = "none";
+          }
+        });
+      });
+    });
+
+    // Simple lightbox for gallery
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector(".lightbox-image");
+    const lightboxClose = lightbox.querySelector(".lightbox-close");
+    const galleryItems = document.querySelectorAll(".gallery-item img");
+
+    galleryItems.forEach((img) => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    lightboxClose.addEventListener("click", () => {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImg.src = "";
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.classList.contains("open")) {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImg.src = "";
+      }
+    });
+  </script>
+</body>
+</html>
