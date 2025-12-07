@@ -1,0 +1,298 @@
+<!--
+Dynamic Photo Gallery — single-file HTML/CSS/JS template
+Features:
+- Responsive CSS Grid gallery
+- Hover tilt + zoom effect using mousemove
+- Filter by category + search
+- Clickable thumbnails -> accessible lightbox (modal) with next/prev and keyboard support
+- Lazy-loading images (loading="lazy")
+- Autoplay slideshow mode
+- Easy to customize images array (below)
+
+Usage: save as `gallery.html` and open in a modern browser.
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic Photo Gallery</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#7c3aed; --muted:#98a0b3; --gap:12px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#e6eef8;background:linear-gradient(180deg,#071025 0%,var(--bg) 100%);}
+    .wrap{max-width:1200px;margin:28px auto;padding:20px}
+
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+    h1{font-size:20px;margin:0}
+    .controls{display:flex;gap:10px;align-items:center}
+    .search{padding:8px 12px;border-radius:10px;border:none;background:#071428;color:var(--muted);min-width:220px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:#cfe3ff;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#4f46e5);border:none}
+
+    /* Filter tags */
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .filter{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);cursor:pointer;background:transparent;color:var(--muted)}
+    .filter.active{background:rgba(124,58,237,0.14);color:#dfe8ff;border-color:rgba(124,58,237,0.35)}
+
+    /* Gallery grid using CSS Grid */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap)}
+    .card{position:relative;overflow:hidden;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:0 6px 18px rgba(2,6,23,0.6);cursor:pointer;transform:translateZ(0);transition:transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .25s}
+    .card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 14px 32px rgba(2,6,23,0.8)}
+
+    /* Image layer */
+    .thumb{display:block;width:100%;height:260px;object-fit:cover;transition:transform .6s cubic-bezier(.2,.9,.3,1);transform-origin:center center}
+    .meta{position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));color:#fff;font-size:13px}
+
+    /* Dynamic tilt effect container */
+    .tilt{perspective:800px}
+    .tilt-inner{transform-style:preserve-3d;transition:transform .18s ease-out}
+
+    /* Lightbox / Modal */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,0.7);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .18s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal-content{max-width:90%;max-height:86%;display:flex;flex-direction:column;gap:12px}
+    .modal-img{max-width:100%;max-height:calc(86vh - 140px);object-fit:contain;border-radius:8px}
+    .modal-meta{display:flex;align-items:center;justify-content:space-between;color:#e6eef8}
+    .modal-controls{display:flex;gap:8px}
+
+    /* small screens tweaks */
+    @media (max-width:600px){.thumb{height:160px}.search{min-width:140px}}
+
+    /* Accessibility focus */
+    .btn:focus,.filter:focus{outline:2px solid rgba(124,58,237,0.45);outline-offset:2px}
+
+    /* subtle loader for lazy images */
+    .placeholder{background:linear-gradient(90deg,#0b1220 0%, #111827 50%, #0b1220 100%);height:100%;width:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.06)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div>
+        <h1>Dynamic Photo Gallery</h1>
+        <div style="color:var(--muted);font-size:13px;margin-top:6px">Elegant responsive grid with filters, tilt hover, and lightbox</div>
+      </div>
+
+      <div class="controls">
+        <input id="search" class="search" placeholder="Search by title or tag..." aria-label="Search images" />
+        <button id="slideshowBtn" class="btn">Start slideshow</button>
+        <button id="resetBtn" class="btn">Reset</button>
+      </div>
+    </header>
+
+    <div class="filters" id="filters" role="tablist" aria-label="Filter images">
+      <!-- filters injected by JS -->
+    </div>
+
+    <section class="gallery" id="gallery" aria-live="polite">
+      <!-- gallery injected by JS -->
+    </section>
+  </main>
+
+  <!-- Modal / Lightbox -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <img id="modalImg" alt="" class="modal-img" />
+      <div class="modal-meta">
+        <div id="modalTitle">Title</div>
+        <div class="modal-controls">
+          <button id="prevBtn" class="btn">◀ Prev</button>
+          <button id="nextBtn" class="btn">Next ▶</button>
+          <button id="closeBtn" class="btn primary">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === CONFIG: change images array to your own sources ===
+    const IMAGES = [
+      {id:1,title:'Sunset over dunes',src:'https://picsum.photos/id/1015/1400/900',tags:['landscape','sunset']},
+      {id:2,title:'Mountain lake',src:'https://picsum.photos/id/1025/1400/900',tags:['landscape','water']},
+      {id:3,title:'City skyline',src:'https://picsum.photos/id/1031/1400/900',tags:['city','architecture']},
+      {id:4,title:'Forest path',src:'https://picsum.photos/id/1056/1400/900',tags:['nature','forest']},
+      {id:5,title:'Street life',src:'https://picsum.photos/id/1060/1400/900',tags:['city','people']},
+      {id:6,title:'Minimal interior',src:'https://picsum.photos/id/1067/1400/900',tags:['interior','design']},
+      {id:7,title:'Aerial cliffs',src:'https://picsum.photos/id/1074/1400/900',tags:['aerial','landscape']},
+      {id:8,title:'Desert patterns',src:'https://picsum.photos/id/1084/1400/900',tags:['abstract','desert']},
+      {id:9,title:'Winter road',src:'https://picsum.photos/id/1080/1400/900',tags:['winter','landscape']},
+      {id:10,title:'Neon signs',src:'https://picsum.photos/id/109/1400/900',tags:['city','night']},
+      {id:11,title:'Waves breaking',src:'https://picsum.photos/id/111/1400/900',tags:['water','ocean']},
+      {id:12,title:'Close-up leaf',src:'https://picsum.photos/id/1081/1400/900',tags:['nature','macro']}
+    ];
+
+    // === state ===
+    let state = {filter:'all',query:'',index:0,slideshow:false,slideshowTimer:null};
+
+    // DOM refs
+    const gallery = document.getElementById('gallery');
+    const filtersContainer = document.getElementById('filters');
+    const searchInput = document.getElementById('search');
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const closeBtn = document.getElementById('closeBtn');
+    const slideshowBtn = document.getElementById('slideshowBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Build unique tag list
+    const TAGS = Array.from(new Set(IMAGES.flatMap(i=>i.tags))).sort();
+
+    function createFilters(){
+      const allBtn = document.createElement('button');
+      allBtn.className='filter active'; allBtn.textContent='All'; allBtn.dataset.tag='all';
+      allBtn.addEventListener('click',onFilterClick);
+      filtersContainer.appendChild(allBtn);
+
+      TAGS.forEach(tag=>{
+        const b = document.createElement('button');
+        b.className='filter'; b.textContent=tag; b.dataset.tag=tag; b.addEventListener('click',onFilterClick);
+        filtersContainer.appendChild(b);
+      });
+    }
+
+    function onFilterClick(e){
+      const tag = e.currentTarget.dataset.tag;
+      state.filter = tag;
+      Array.from(filtersContainer.children).forEach(ch=>ch.classList.toggle('active', ch.dataset.tag===tag));
+      renderGallery();
+    }
+
+    function renderGallery(){
+      gallery.innerHTML='';
+      const q = state.query.trim().toLowerCase();
+      const filtered = IMAGES.filter(img=>{
+        const byTag = state.filter==='all' ? true : img.tags.includes(state.filter);
+        const byQuery = q ? (img.title.toLowerCase().includes(q) || img.tags.join(' ').includes(q)) : true;
+        return byTag && byQuery;
+      });
+
+      filtered.forEach((img, idx)=>{
+        const card = document.createElement('article');
+        card.className='card tilt';
+        card.tabIndex=0;
+        card.setAttribute('aria-label', img.title + ' — open');
+        card.innerHTML = `
+          <div class="tilt-inner">
+            <div class="placeholder" aria-hidden="true"><span>Loading…</span></div>
+            <img class="thumb" data-src="${img.src}" alt="${img.title}" loading="lazy" />
+            <div class="meta">${img.title}</div>
+          </div>
+        `;
+
+        // attach tilt effect
+        const inner = card.querySelector('.tilt-inner');
+        const thumb = card.querySelector('.thumb');
+
+        card.addEventListener('mousemove', e=>{
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5; // -0.5 .. 0.5
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          const rotX = (py * 12).toFixed(2);
+          const rotY = (px * -12).toFixed(2);
+          inner.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(0)`;
+          thumb.style.transform = `scale(1.06) translateZ(0) perspective(600px)`;
+        });
+        card.addEventListener('mouseleave', ()=>{ inner.style.transform='none'; thumb.style.transform='none'; });
+
+        // click / keyboard open
+        function openThis(){
+          const galleryIndex = filtered.findIndex(f=>f.id===img.id);
+          openModalFromArray(filtered, galleryIndex);
+        }
+        card.addEventListener('click', openThis);
+        card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') openThis(); });
+
+        gallery.appendChild(card);
+
+        // lazy load actual image when in viewport
+        const io = new IntersectionObserver((entries, observer)=>{
+          entries.forEach(ent=>{
+            if(ent.isIntersecting){
+              const im = ent.target.querySelector('.thumb');
+              im.src = im.dataset.src;
+              im.addEventListener('load', ()=>{ // remove placeholder
+                const ph = ent.target.querySelector('.placeholder'); if(ph) ph.remove();
+                im.style.filter='none';
+              });
+              observer.disconnect();
+            }
+          });
+        }, {threshold:0.06});
+        io.observe(card);
+      });
+    }
+
+    // === Modal / Lightbox functions ===
+    function openModalFromArray(arr, idx){
+      state.index = idx; state.currentArray = arr;
+      const item = arr[idx];
+      modalImg.src = item.src; modalImg.alt = item.title; modalTitle.textContent = item.title;
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false');
+      // focus last button for accessibility
+      closeBtn.focus();
+    }
+
+    function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalImg.src=''; }
+    function showNext(){ state.index = (state.index + 1) % state.currentArray.length; const it = state.currentArray[state.index]; modalImg.src = it.src; modalImg.alt=it.title; modalTitle.textContent = it.title; }
+    function showPrev(){ state.index = (state.index - 1 + state.currentArray.length) % state.currentArray.length; const it = state.currentArray[state.index]; modalImg.src = it.src; modalImg.alt=it.title; modalTitle.textContent = it.title; }
+
+    // keyboard navigation
+    document.addEventListener('keydown', e=>{
+      if(modal.classList.contains('open')){
+        if(e.key==='ArrowRight') showNext();
+        if(e.key==='ArrowLeft') showPrev();
+        if(e.key==='Escape') closeModal();
+      }
+    });
+
+    // modal button handlers
+    prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
+    closeBtn.addEventListener('click', closeModal);
+
+    // close modal when clicking backdrop
+    modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+
+    // ===== slideshow =====
+    function startSlideshow(interval=3000){
+      if(state.slideshowTimer) clearInterval(state.slideshowTimer);
+      state.slideshow=true; slideshowBtn.textContent='Stop slideshow';
+      state.slideshowTimer = setInterval(()=>{ showNext(); }, interval);
+    }
+    function stopSlideshow(){ state.slideshow=false; slideshowBtn.textContent='Start slideshow'; if(state.slideshowTimer) clearInterval(state.slideshowTimer); state.slideshowTimer=null; }
+    slideshowBtn.addEventListener('click', ()=>{
+      if(!modal.classList.contains('open')){
+        // open modal at first image of current render
+        const first = gallery.querySelector('.card'); if(first) first.click(); else return;
+      }
+      if(state.slideshow) stopSlideshow(); else startSlideshow(2500);
+    });
+
+    // search
+    searchInput.addEventListener('input', e=>{ state.query = e.target.value; renderGallery(); });
+
+    // reset
+    resetBtn.addEventListener('click', ()=>{ state.filter='all'; state.query=''; searchInput.value=''; Array.from(filtersContainer.children).forEach(ch=>ch.classList.toggle('active', ch.dataset.tag==='all')); renderGallery(); });
+
+    // initialize
+    createFilters(); renderGallery();
+
+    // for accessibility: trap focus inside modal when open
+    document.addEventListener('focusin', (e)=>{
+      if(modal.classList.contains('open')){
+        if(!modal.contains(e.target)) closeBtn.focus();
+      }
+    });
+
+    // small helper: when gallery changes, ensure modal array indexes are correct
+    // (we pass filtered array into openModalFromArray so modal navigation respects current filter/search)
+  </script>
+</body>
+</html>
