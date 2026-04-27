@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Personal academic website of Your Name – research, projects, publications, awards, skills, and contact."
+    content="Personal academic website of Bhavesh Parmar – research, projects, publications, awards, skills, and contact."
   />
 
   <!-- Optional: Google Font (can be changed) -->
@@ -1151,6 +1151,15 @@
       }
     }
   </style>
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </head>
 <body>
   <div class="page-wrap">
@@ -1224,7 +1233,7 @@
               </p>
 
               <div class="bio-actions">
-                <a href="bio/ResumeOCT2024BHP.pdf" class="btn" target="_blank" rel="noreferrer">
+                <a href="bio/ResumeOCT2024BHP.pdf" class="btn" target="_blank" rel="noreferrer" onclick="gtag('event', 'download_cv');>
                   Download CV (PDF)
                 </a>
                 <a href="https://scholar.google.com/citations?user=KKOeuF4AAAAJ" class="btn-outline" target="_blank" rel="noreferrer">
